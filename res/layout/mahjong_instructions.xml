@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The object of the game is to clear the playing area of tiles by matching pairs of tiles.\n\nYou can remove only those matching pairs of tiles where each tile has at least one side (left or right) free and no other tiles placed on top.\n\nMatching pairs must have identical symbols with two exceptions. The seasons and flowers tiles may be matched with any other tile of that particular set."
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/tile_0_33" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/tile_0_37" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Seasons"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Flowers"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="pref_mahjong_puzzle">pref_mahjong_puzzle</string>
+    <string name="pref_mahjong_background">pref_mahjong_background</string>
+    <string name="pref_mahjong_difficulty_tab">pref_mahjong_difficulty_tab</string>
+
+</resources>

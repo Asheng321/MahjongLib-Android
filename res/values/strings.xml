@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">Mahjong</string>
+
+    <string-array name="tile_descriptions">
+        <item>One of Circles</item>
+        <item>Two of Circles</item>
+        <item>Three of Circles</item>
+        <item>Four of Circles</item>
+        <item>Five of Circles</item>
+        <item>Six of Circles</item>
+        <item>Seven of Circles</item>
+        <item>Eight of Circles</item>
+        <item>Nine of Circles</item>
+        <item>North Wind</item>
+        <item>West Wind</item>
+        <item>South Wind</item>
+        <item>East Wind</item>
+        <item>Red Dragon</item>
+        <item>Green Dragon</item>
+        <item>One of Letters</item>
+        <item>Two of Letters</item>
+        <item>Three of Letters</item>
+        <item>Four of Letters</item>
+        <item>Five of Letters</item>
+        <item>Six of Letters</item>
+        <item>Seven of Letters</item>
+        <item>Eight of Letters</item>
+        <item>Nine of Letters</item>
+        <item>One of Bamboo</item>
+        <item>Two of Bamboo</item>
+        <item>Three of Bamboo</item>
+        <item>Four of Bamboo</item>
+        <item>Five of Bamboo</item>
+        <item>Six of Bamboo</item>
+        <item>Seven of Bamboo</item>
+        <item>Eight of Bamboo</item>
+        <item>Nine of Bamboo</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Autumn</item>
+        <item>Winter</item>
+        <item>Plum Flower</item>
+        <item>Orchid</item>
+        <item>Lotus</item>
+        <item>Bamboo Flower</item>
+    </string-array>
+
+</resources>
