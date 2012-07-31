@@ -1,4 +1,8 @@
+
 package com.t2.mahjong;
+
+import com.t2.mahjong.db.MahjongContract;
+import com.t2.mahjong.db.MahjongContract.Mahjong.Difficulty;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,69 +19,71 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 
-import com.t2.mahjong.db.MahjongContract;
-import com.t2.mahjong.db.MahjongContract.Mahjong.Difficulty;
-
 public class MahjongTabFragment extends ListFragment implements LoaderCallbacks<Cursor>, OnItemClickListener {
 
-	private static final int LOADER_PUZZLES = 1;
+    private static final int LOADER_PUZZLES = 1;
 
-	private MahjongPuzzleAdapter mAdapter;
-	private Difficulty mDifficulty;
+    private MahjongPuzzleAdapter mAdapter;
+    private Difficulty mDifficulty;
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		mDifficulty = Difficulty.valueOf(getArguments().getString("difficulty"));
-		getLoaderManager().initLoader(LOADER_PUZZLES, null, this);
-		mAdapter = new MahjongPuzzleAdapter(getActivity(), null);
-		setListAdapter(mAdapter);
-		getListView().setOnItemClickListener(this);
-	}
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mDifficulty = Difficulty.valueOf(getArguments().getString("difficulty"));
+        getLoaderManager().initLoader(LOADER_PUZZLES, null, this);
+        mAdapter = new MahjongPuzzleAdapter(getActivity(), null);
+        setListAdapter(mAdapter);
+        getListView().setOnItemClickListener(this);
+    }
 
-	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		return new CursorLoader(getActivity(),
-				MahjongContract.Mahjong.CONTENT_URI.buildUpon().appendPath(mDifficulty.name()).build(),
-				new String[] { MahjongContract.Mahjong.COL_TITLE, MahjongContract.Mahjong.COL_COMPLETE, MahjongContract.Mahjong._ID },
-				null, null, null);
-	}
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getActivity(),
+                MahjongContract.Mahjong.CONTENT_URI.buildUpon().appendPath(mDifficulty.name()).build(),
+                new String[] {
+                        MahjongContract.Mahjong.COL_TITLE, MahjongContract.Mahjong.COL_COMPLETE, MahjongContract.Mahjong._ID
+                },
+                null, null, null);
+    }
 
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Cursor cursor = (Cursor) mAdapter.getItem(arg2);
-		int id = cursor.getInt(cursor.getColumnIndex(MahjongContract.Mahjong._ID));
-		boolean complete = cursor.getInt(cursor.getColumnIndex(MahjongContract.Mahjong.COL_COMPLETE)) == 1;
-		PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putInt(getString(R.string.pref_mahjong_puzzle), id).commit();
-		Intent intent = new Intent(getActivity(), getActivity().getClass());
-		startActivity(intent);
-		getActivity().finish();
-	}
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        Cursor cursor = (Cursor) mAdapter.getItem(arg2);
+        int id = cursor.getInt(cursor.getColumnIndex(MahjongContract.Mahjong._ID));
 
-	public void onLoaderReset(Loader<Cursor> loader) {
-		mAdapter.swapCursor(null);
-	}
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putInt(getString(R.string.pref_mahjong_puzzle), id).commit();
+        Intent intent = new Intent(getActivity(), getActivity().getClass());
+        startActivity(intent);
+        getActivity().finish();
+    }
 
-	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-		mAdapter.swapCursor(data);
-	}
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.swapCursor(null);
+    }
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-	}
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mAdapter.swapCursor(data);
+    }
 
-	private static final class MahjongPuzzleAdapter extends SimpleCursorAdapter {
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
-		public MahjongPuzzleAdapter(Context context, Cursor c) {
-			super(context, R.layout.mahjong_puzzle_row, c, new String[] { MahjongContract.Mahjong.COL_TITLE,
-					MahjongContract.Mahjong.COL_COMPLETE }, new int[] {
-					R.id.lbl_name, R.id.img_complete }, 0);
-		}
+    private static final class MahjongPuzzleAdapter extends SimpleCursorAdapter {
 
-		@Override
-		public void setViewImage(ImageView v, String value) {
-			v.setVisibility(Integer.valueOf(value) == 1 ? View.VISIBLE : View.INVISIBLE);
-		}
+        public MahjongPuzzleAdapter(Context context, Cursor c) {
+            super(context, R.layout.mahjong_puzzle_row, c, new String[] {
+                    MahjongContract.Mahjong.COL_TITLE,
+                    MahjongContract.Mahjong.COL_COMPLETE
+            }, new int[] {
+                    R.id.lbl_name, R.id.img_complete
+            }, 0);
+        }
 
-	}
+        @Override
+        public void setViewImage(ImageView v, String value) {
+            v.setVisibility(Integer.valueOf(value) == 1 ? View.VISIBLE : View.INVISIBLE);
+        }
+
+    }
 
 }

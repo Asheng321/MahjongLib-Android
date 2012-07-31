@@ -51,9 +51,6 @@ public class MahjongProvider extends ContentProvider {
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		Log.d(TAG, "Delete called on URI " + uri);
 
-		String table = null;
-		String where = null;
-
 		switch (sUriMatcher.match(uri)) {
 		default:
 			throw new IllegalArgumentException("Unknown URI " + uri);
